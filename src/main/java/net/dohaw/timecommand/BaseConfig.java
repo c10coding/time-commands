@@ -21,7 +21,11 @@ public class BaseConfig extends Config {
             // fullanarchy reload;12:00
             String[] lineSplit = configLine.split(";");
             String command = lineSplit[0];
-            timeCommands.add(new TimeCommandInfo(command, TimeUtil.parse(lineSplit[1])));
+
+            String[] timeSplit = lineSplit[1].split(":");
+            int hour = Integer.parseInt(timeSplit[0]);
+            int minute = Integer.parseInt(timeSplit[1]);
+            timeCommands.add(new TimeCommandInfo(command, hour, minute));
         }
 
         return timeCommands;
@@ -32,7 +36,7 @@ public class BaseConfig extends Config {
 
         List<String> timeCommandsOnFile = config.getStringList("Time Commands");
         for(TimeCommandInfo info : timeCommandInfo){
-            String configLine = info.getCommand() + ";" + TimeUtil.formatter.format(info.getTime());
+            String configLine = info.getCommand() + ";" + info.getHour() + ":" + info.getMinute();
             timeCommandsOnFile.add(configLine);
         }
         config.set("Time Commands", timeCommandsOnFile);

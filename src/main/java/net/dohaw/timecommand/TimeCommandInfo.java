@@ -3,8 +3,6 @@ package net.dohaw.timecommand;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-import java.time.ZonedDateTime;
-
 @AllArgsConstructor
 public class TimeCommandInfo {
 
@@ -12,6 +10,7 @@ public class TimeCommandInfo {
     private String command;
 
     @Getter
-    private ZonedDateTime time;
+    private int hour, minute;
+
 
 }

@@ -25,6 +25,7 @@ public final class TimeCommandPlugin extends JavaPlugin {
     public void onEnable() {
 
         CoreLib.setInstance(this);
+        JPUtils.validateFiles("config.yml");
         JPUtils.registerCommand("timecommand", new TimeCommand(this));
 
         baseConfig = new BaseConfig();

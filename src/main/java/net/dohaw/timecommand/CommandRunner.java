@@ -25,15 +25,16 @@ public class CommandRunner extends BukkitRunnable {
         for(TimeCommandInfo info : timeCommands){
             if(!recentCommandsRan.contains(info)){
 
-                ZonedDateTime infoTime = info.getTime();
-                if(isSameTime(currentTime, infoTime)){
+                int hour = info.getHour();
+                int minute = info.getMinute();
+                if(isSameTime(currentTime, hour, minute)){
 
                     Bukkit.dispatchCommand(Bukkit.getConsoleSender(), info.getCommand());
                     // so that it doesn't get ran again
                     recentCommandsRan.add(info);
                     Bukkit.getScheduler().runTaskLater(plugin, () -> {
                         recentCommandsRan.remove(info);
-                    }, 200L);
+                    }, 1300L);
 
                 }
 
@@ -42,12 +43,8 @@ public class CommandRunner extends BukkitRunnable {
 
     }
 
-    /**
-     * If it's roughly the same time
-     */
-    private boolean isSameTime(ZonedDateTime currentTime, ZonedDateTime time2){
-        int diffSeconds = time2.getSecond() - currentTime.getSecond();
-        return currentTime.getHour() == time2.getHour() && currentTime.getMinute() == time2.getMinute() && diffSeconds <= 5;
+    private boolean isSameTime(ZonedDateTime currentTime, int commandHour, int commandMinute){
+        return currentTime.getHour() == commandHour && currentTime.getMinute() == commandMinute;
     }
 
 }
