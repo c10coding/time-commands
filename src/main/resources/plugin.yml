@@ -1,0 +1,11 @@
+name: TimeCommand
+version: ${project.version}
+main: net.dohaw.timecommand.TimeCommandPlugin
+
+commands:
+  timecommand:
+    description: The base command for this plugin
+    permission: timecommand.use
+permissions:
+  timecommand.use:
+    default: op
