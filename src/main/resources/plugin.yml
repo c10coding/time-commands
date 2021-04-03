@@ -6,6 +6,11 @@ commands:
   timecommand:
     description: The base command for this plugin
     permission: timecommand.use
+    aliases:
+      - tc
+      - timec
+      - tcommand
+      - tco
 permissions:
   timecommand.use:
     default: op

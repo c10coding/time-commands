@@ -34,7 +34,7 @@ public class BaseConfig extends Config {
 
     public void saveTimeCommands(List<TimeCommandInfo> timeCommandInfo){
 
-        List<String> timeCommandsOnFile = config.getStringList("Time Commands");
+        List<String> timeCommandsOnFile = new ArrayList<>();
         for(TimeCommandInfo info : timeCommandInfo){
             String configLine = info.getCommand() + ";" + info.getHour() + ":" + info.getMinute();
             timeCommandsOnFile.add(configLine);
